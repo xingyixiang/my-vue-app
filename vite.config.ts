@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import eslintPlugin from 'vite-plugin-eslint';
 import vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';
 import AutoImport from 'unplugin-auto-import/vite';
@@ -36,11 +37,8 @@ export default defineConfig({
     vue({
       reactivityTransform: true,
     }),
+    eslintPlugin(),
     vueI18n({
-      // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
-      // compositionOnly: false,
-
-      // you need to set i18n resource including paths !
       include: resolve('src/locales/**'),
     }),
     AutoImport({

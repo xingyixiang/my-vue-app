@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-
-defineProps<{ msg: string }>();
+import { useAppStoreHook } from '@/store/modules/app';
 
 const count = ref(1);
 
@@ -10,8 +9,10 @@ const add = () => {
   count.value += 1;
 };
 const { locale, t } = useI18n();
+const appStore = useAppStoreHook();
 const changeLang = (type: string) => {
   locale.value = type;
+  appStore.setLang(type);
 };
 </script>
 
@@ -20,8 +21,8 @@ const changeLang = (type: string) => {
   {{ count }}
   <span>{{ t('helloWorld.hello', { name: 'xyx' }) }}</span>
 
-  <el-button @click="changeLang('en-US')">英文</el-button>
-  <el-button @click="changeLang('zh-CN')">中文</el-button>
+  <el-button @click="changeLang('en')">英文</el-button>
+  <el-button @click="changeLang('zh')">中文</el-button>
   <el-table :data="[]" style="width: 100%">
     <el-table-column prop="date" label="Date" width="180" />
     <el-table-column prop="name" label="Name" width="180" />

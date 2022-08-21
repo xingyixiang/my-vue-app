@@ -1,14 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Logo from './Logo.vue';
+</script>
 
 <template>
-  <div class="layout-header"><img src="@/assets/images/vite.svg" alt="" /></div>
+  <div class="layout-header"><Logo /></div>
 </template>
 
 <style lang="scss" scoped>
+$headerHeight: 47px;
 .layout-header {
-  box-sizing: border-box;
-  height: 40px;
-  line-height: 40px;
+  height: $headerHeight;
+  line-height: $headerHeight;
   border-bottom: 1px solid #cccccc;
 }
 </style>

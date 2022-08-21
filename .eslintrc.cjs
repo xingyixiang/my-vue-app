@@ -3,41 +3,10 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  globals: {
-    // Ref sugar (take 2)
-    $: "readonly",
-    $$: "readonly",
-    $ref: "readonly",
-    $shallowRef: "readonly",
-    $computed: "readonly",
-
-    // index.d.ts
-    // global.d.ts
-    Fn: "readonly",
-    PromiseFn: "readonly",
-    RefType: "readonly",
-    LabelValueOptions: "readonly",
-    EmitType: "readonly",
-    TargetContext: "readonly",
-    ComponentElRef: "readonly",
-    ComponentRef: "readonly",
-    ElRef: "readonly",
-    global: "readonly",
-    ForDataType: "readonly",
-    ComponentRoutes: "readonly",
-
-    // script setup
-    defineProps: "readonly",
-    defineEmits: "readonly",
-    defineExpose: "readonly",
-    withDefaults: "readonly"
-  },
   extends: [
     'plugin:vue/vue3-essential',
-    'eslint:recommended',
-    '@vue/typescript/recommended',
-    '@vue/prettier',
-    '@vue/eslint-config-typescript',
+    'airbnb-base',
+    'plugin:prettier/recommended',
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -113,7 +82,6 @@ module.exports = {
         endOfLine: 'auto',
         trailingComma: 'es5',
         singleQuote: true,
-        parser: 'flow',
       },
     ],
   },

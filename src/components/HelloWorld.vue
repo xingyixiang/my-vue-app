@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useI18n } from "vue-i18n";
+import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 defineProps<{ msg: string }>();
 
@@ -18,7 +18,7 @@ const changeLang = (type: string) => {
 <template>
   <el-button @click="add">加一</el-button>
   {{ count }}
-  <span>{{ t("helloWorld.hello", { name: "xyx" }) }}</span>
+  <span>{{ t('helloWorld.hello', { name: 'xyx' }) }}</span>
 
   <el-button @click="changeLang('en-US')">英文</el-button>
   <el-button @click="changeLang('zh-CN')">中文</el-button>

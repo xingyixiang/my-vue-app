@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import Engine from './Engine';
+import Engine from '@/tankwar/Engine';
 
 const canvasDom = ref();
 onMounted(() => {

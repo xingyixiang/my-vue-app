@@ -1,6 +1,7 @@
 import { SIZE } from './constants';
+import { uniqueId } from './utils';
 
-enum Dir {
+export enum Dir {
   Up,
   Down,
   Left,
@@ -9,6 +10,7 @@ enum Dir {
 
 export interface TankOptions {
   image: HTMLImageElement;
+  ctx: CanvasRenderingContext2D;
   dir: Dir;
   speed: number;
   x: number;
@@ -17,6 +19,8 @@ export interface TankOptions {
 
 export default class Tank {
   image: HTMLImageElement;
+
+  ctx: CanvasRenderingContext2D;
 
   dir: Dir;
 
@@ -34,8 +38,11 @@ export default class Tank {
 
   step: number;
 
+  id: string;
+
   constructor(options: TankOptions) {
     this.image = options.image;
+    this.ctx = options.ctx;
     this.dir = options.dir;
     this.speed = options.speed;
     this.x = options.x;
@@ -44,6 +51,7 @@ export default class Tank {
     this.positionY = 0;
     this.size = SIZE;
     this.step = 0;
+    this.id = uniqueId('tank');
   }
 
   move() {
@@ -61,5 +69,8 @@ export default class Tank {
     }
   }
 
-  print() {}
+  paint() {
+    const { size } = this;
+    this.ctx.drawImage(this.image, 0, 0, size, size, 0, 0, size, size);
+  }
 }

@@ -8,7 +8,7 @@ const routes = [
       { path: '/', component: () => import('@/components/HelloWorld.vue') },
     ],
   },
-  { path: '/tank', component: () => import('@/tankwar/index.vue') },
+  { path: '/tank', component: () => import('@/views/tank.vue') },
 ];
 
 const router = createRouter({

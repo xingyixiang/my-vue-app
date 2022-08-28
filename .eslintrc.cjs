@@ -46,12 +46,14 @@ module.exports = {
     'vue/require-explicit-emits': 'off',
     'vue/multi-word-component-names': 'off',
     '@typescript-eslint/no-explicit-any': 'off', // any
-    'no-debugger': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off', // setup()
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
+    'no-debugger': 'off',
+    'no-shadow': 'off',
     'no-param-reassign': ['error', { props: false }],
     'comma-dangle': [
       'error',
@@ -65,6 +67,7 @@ module.exports = {
     ],
     'import/extensions': [0, 'never'],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/prefer-default-export': 'off',
     'import/no-unresolved': [2, { ignore: ['unplugin-element-plus'] }],
     'vue/html-self-closing': [
       'error',

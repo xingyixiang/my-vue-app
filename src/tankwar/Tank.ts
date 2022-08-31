@@ -2,10 +2,10 @@ import { SIZE } from './constants';
 import { uniqueId } from './utils';
 
 export enum Dir {
-  Up,
-  Down,
-  Left,
-  Right,
+  Up = 0,
+  Down = 1,
+  Left = 2,
+  Right = 3,
 }
 
 export interface TankOptions {
@@ -30,9 +30,9 @@ export default class Tank {
 
   y: number;
 
-  positionX: number;
+  oldX: number;
 
-  positionY: number;
+  oldY: number;
 
   size: number;
 
@@ -47,19 +47,21 @@ export default class Tank {
     this.speed = options.speed;
     this.x = options.x;
     this.y = options.y;
-    this.positionX = 0;
-    this.positionY = 0;
+    this.oldX = this.x;
+    this.oldY = this.y;
     this.size = SIZE;
     this.step = 0;
     this.id = uniqueId('tank');
   }
 
   move() {
+    this.oldX = this.x;
+    this.oldY = this.y;
     if (this.dir === Dir.Up) {
-      this.y += this.speed;
+      this.y -= this.speed;
     }
     if (this.dir === Dir.Down) {
-      this.y -= this.speed;
+      this.y += this.speed;
     }
     if (this.dir === Dir.Right) {
       this.x += this.speed;
@@ -69,8 +71,16 @@ export default class Tank {
     }
   }
 
+  turn(dir: Dir) {
+    this.dir = dir;
+  }
+
   paint() {
-    const { size } = this;
-    this.ctx.drawImage(this.image, 0, 0, size, size, 0, 0, size, size);
+    this.ctx.clearRect(this.oldX, this.oldY, this.size, this.size);
+    this.step = (this.step + 1) % 4;
+    const { size, x, y, step, dir } = this;
+    const sw = size * Math.floor(step / 2);
+    const sh = size * dir;
+    this.ctx.drawImage(this.image, sw, sh, size, size, x, y, size, size);
   }
 }

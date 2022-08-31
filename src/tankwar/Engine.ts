@@ -1,4 +1,5 @@
-import Tank, { Dir } from './Tank';
+import { Dir } from './Tank';
+import Hero from './Hero';
 import { AREA_SIZE } from './constants';
 
 type ImgStore = Record<string, any>;
@@ -20,9 +21,12 @@ export default class Engine {
 
   private ctx: CanvasRenderingContext2D | null;
 
+  timer: null | number;
+
   constructor(options: EngineOptions) {
     this.el = options.el;
     this.ctx = null;
+    this.timer = null;
   }
 
   init() {
@@ -43,15 +47,21 @@ export default class Engine {
     const img = new Image();
     img.src = images.tank_T1_0;
     img.onload = () => {
-      const tank = new Tank({
+      const hero = new Hero({
         ctx: this.ctx as CanvasRenderingContext2D,
         image: img,
-        speed: 10,
-        dir: Dir.Up,
+        speed: 5,
+        dir: Dir.Right,
         x: 0,
         y: 0,
       });
-      tank.paint();
+      document.onkeydown = hero.keyDown.bind(hero);
+      const a = () => {
+        // hero.move();
+        hero.paint();
+        window.requestAnimationFrame(a);
+      };
+      a();
     };
   }
 }

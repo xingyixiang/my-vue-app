@@ -56,6 +56,7 @@ module.exports = {
     'no-debugger': 'off',
     'no-shadow': 'off',
     'no-param-reassign': ['error', { props: false }],
+    'class-methods-use-this': 'off',
     'comma-dangle': [
       'error',
       {

@@ -75,7 +75,10 @@ export default class Tank {
     this.dir = dir;
   }
 
+  beforePaint() {}
+
   paint() {
+    this.beforePaint();
     this.ctx.clearRect(this.oldX, this.oldY, this.size, this.size);
     this.step = (this.step + 1) % 4;
     const { size, x, y, step, dir } = this;

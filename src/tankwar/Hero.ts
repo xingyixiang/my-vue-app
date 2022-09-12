@@ -1,4 +1,5 @@
-import Tank, { TankOptions, Dir } from './Tank';
+import { Dir } from './types/index.d';
+import Tank, { TankOptions } from './Tank';
 
 export type KeyMap = Record<string, Dir>;
 

@@ -1,74 +1,22 @@
+import MovableObject from './MovableObject';
 import { SIZE } from './constants';
+import { Dir, MovableObjectOptions } from './types/index.d';
 import { uniqueId } from './utils';
 
-export enum Dir {
-  Up = 0,
-  Down = 1,
-  Left = 2,
-  Right = 3,
-}
+export type TankOptions = MovableObjectOptions;
 
-export interface TankOptions {
-  image: HTMLImageElement;
-  ctx: CanvasRenderingContext2D;
-  dir: Dir;
-  speed: number;
-  x: number;
-  y: number;
-}
-
-export default class Tank {
-  image: HTMLImageElement;
-
-  ctx: CanvasRenderingContext2D;
-
-  dir: Dir;
-
-  speed: number;
-
-  x: number;
-
-  y: number;
-
-  oldX: number;
-
-  oldY: number;
+export default class Tank extends MovableObject {
+  step: number;
 
   size: number;
-
-  step: number;
 
   id: string;
 
   constructor(options: TankOptions) {
-    this.image = options.image;
-    this.ctx = options.ctx;
-    this.dir = options.dir;
-    this.speed = options.speed;
-    this.x = options.x;
-    this.y = options.y;
-    this.oldX = this.x;
-    this.oldY = this.y;
+    super(options);
     this.size = SIZE;
     this.step = 0;
     this.id = uniqueId('tank');
-  }
-
-  move() {
-    this.oldX = this.x;
-    this.oldY = this.y;
-    if (this.dir === Dir.Up) {
-      this.y -= this.speed;
-    }
-    if (this.dir === Dir.Down) {
-      this.y += this.speed;
-    }
-    if (this.dir === Dir.Right) {
-      this.x += this.speed;
-    }
-    if (this.dir === Dir.Left) {
-      this.x -= this.speed;
-    }
   }
 
   turn(dir: Dir) {

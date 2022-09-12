@@ -1,4 +1,4 @@
-import { Dir } from './Tank';
+import { Dir } from './types/index.d';
 import Hero from './Hero';
 import loadImages, { ImageElementStore } from './loadImages';
 import { AREA_SIZE } from './constants';
@@ -45,6 +45,7 @@ export default class Engine {
 
   private createScene() {
     const canvas = document.createElement('canvas');
+    canvas.style.backgroundColor = '#000';
     this.ctx = canvas.getContext('2d');
     canvas.width = AREA_SIZE;
     canvas.height = AREA_SIZE;
